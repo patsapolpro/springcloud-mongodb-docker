@@ -9,12 +9,9 @@
 	<name>springcloud-parent</name>
 	<description>parent group for springcloud</description>
 	<modules>
-		<module>./config-service</module>
-		<module>./discovery-service</module>
 		<module>./employee-service</module>
 		<module>./department-service</module>
 		<module>./organization-service</module>
 		<module>./gateway-service</module>
-		<module>./proxy-service</module>
 	</modules>
 </project>

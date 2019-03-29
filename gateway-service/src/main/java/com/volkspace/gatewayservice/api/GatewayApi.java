@@ -1,4 +1,4 @@
-package com.volkspace.proxyservice.api;
+package com.volkspace.gatewayservice.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class ProxyApi {
+public class GatewayApi {
 
     @Autowired
     ZuulProperties properties;
@@ -23,14 +23,14 @@ public class ProxyApi {
         return () -> {
             List<SwaggerResource> resources = new ArrayList<>();
             properties.getRoutes().values().stream()
-                    .forEach(route -> resources.add(createResource(route.getServiceId(), route.getId(), "2.0")));
+                    .forEach(route -> resources.add(createResource(route.getId(), "2.0")));
             return resources;
         };
     }
 
-    private SwaggerResource createResource(String name, String location, String version) {
+    private SwaggerResource createResource(String location, String version) {
         SwaggerResource swaggerResource = new SwaggerResource();
-        swaggerResource.setName(name);
+        swaggerResource.setName(location);
         swaggerResource.setLocation("/" + location + "/v2/api-docs");
         swaggerResource.setSwaggerVersion(version);
         return swaggerResource;

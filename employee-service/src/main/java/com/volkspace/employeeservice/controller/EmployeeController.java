@@ -21,18 +21,18 @@ public class EmployeeController {
     @PostMapping("/")
     public Employee add(@RequestBody Employee employee) {
         LOGGER.info("Employee add: {}", employee);
-        return repository.add(employee);
+        return repository.save(employee);
     }
 
     @ApiOperation(value = "Find Employee", notes = "Find Customer by Employee ID", response = Employee.class)
     @GetMapping("/{id}")
-    public Employee findById(@ApiParam(value = "Employee ID", required = true) @PathVariable("id") Long id) {
+    public Employee findById(@ApiParam(value = "Employee ID", required = true) @PathVariable("id") String id) {
         LOGGER.info("Employee find: id={}", id);
-        return repository.findById(id);
+        return repository.findById(id).get();
     }
 
     @GetMapping("/")
-    public List<Employee> findAll() {
+    public Iterable<Employee> findAll() {
         LOGGER.info("Employee find");
         return repository.findAll();
     }
@@ -40,12 +40,12 @@ public class EmployeeController {
     @GetMapping("/department/{departmentId}")
     public List<Employee> findByDepartment(@PathVariable("departmentId") Long departmentId) {
         LOGGER.info("Employee find: departmentId={}", departmentId);
-        return repository.findByDepartment(departmentId);
+        return repository.findByDepartmentId(departmentId);
     }
 
     @GetMapping("/organization/{organizationId}")
     public List<Employee> findByOrganization(@PathVariable("organizationId") Long organizationId) {
         LOGGER.info("Employee find: organizationId={}", organizationId);
-        return repository.findByOrganization(organizationId);
+        return repository.findByOrganizationId(organizationId);
     }
 }
