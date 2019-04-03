@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: employee
-          image: spring-cloud/employee:1.0
+          image: patsapol/employee-service:kubernetes
           ports:
             - containerPort: 8080
           env:

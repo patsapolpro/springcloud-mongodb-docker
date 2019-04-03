@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: organization
-          image: spring-cloud/organization:1.0
+          image: patsapol/organization-service:kubernetes
           ports:
             - containerPort: 8080
           env:
